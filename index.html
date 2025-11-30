@@ -6,13 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Le Digital Simplifié</title>
     <style>
-        /* Base */
-        body,
-        h1,
-        h2,
-        h3,
-        p,
-        ul {
+        /* Reset de base */
+        body, h1, h2, h3, p, ul {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -33,49 +28,36 @@
             text-decoration: underline;
         }
 
-        /* Header */
         header {
             text-align: center;
             padding: 3rem 1rem 2rem;
-            position: relative;
         }
 
         header h1 {
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             color: #FFFFFF;
-            line-height: 1.3;
             opacity: 0;
-            transform: translateY(-20px);
-            transition: 1s ease;
-        }
-
-        header h1.visible {
-            opacity: 1;
-            transform: translateY(0);
+            animation: fadeInDown 1s forwards;
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 500;
             color: #E5E5E5;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             opacity: 0;
-            transform: translateY(-20px);
-            transition: 1.2s ease;
-        }
-
-        header p.visible {
-            opacity: 1;
-            transform: translateY(0);
+            animation: fadeInUp 1s forwards 0.5s;
         }
 
         header .divider {
             width: 80%;
-            margin: 0 auto;
+            margin: 1.2rem auto 0;
             border-bottom: 2px solid #FFFFFF;
             position: relative;
+            opacity: 0;
+            animation: fadeIn 1s forwards 1s;
         }
 
         header .icon-bar {
@@ -100,121 +82,115 @@
             font-family: monospace;
         }
 
-        /* Solutions */
-        .solutions-box {
-            max-width: 900px;
-            margin: 3rem auto;
-            background: #142d5e;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            padding: 2.5rem 3rem;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+        /* Animations */
+        @keyframes fadeInDown {
+            from {opacity:0; transform: translateY(-20px);}
+            to {opacity:1; transform: translateY(0);}
         }
 
-        .solutions-box.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes fadeInUp {
+            from {opacity:0; transform: translateY(20px);}
+            to {opacity:1; transform: translateY(0);}
+        }
+
+        @keyframes fadeIn {
+            from {opacity:0;}
+            to {opacity:1;}
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        .solutions-box {
+            max-width: 900px;
+            margin: 2rem auto 3rem;
+            background: #142d5e;
+            box-shadow: 0 2px 6px rgb(0 0 0 / 0.3);
+            border-radius: 8px;
+            padding: 2rem 2.5rem;
         }
 
         .solutions-header {
             text-align: center;
             font-weight: 700;
-            font-size: 1.3rem;
-            padding: 0.7rem 0;
-            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            padding: 0.5rem 0;
+            margin-bottom: 1.8rem;
             color: #FFFFFF;
             border-bottom: 1px solid #2296f3;
             display: inline-block;
             width: 100%;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.3s;
         }
 
         .grid-services {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
+            gap: 2rem;
         }
 
         .service-item {
             background: #0e3a6e;
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: 6px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
             opacity: 0;
-            transform: translateY(30px) rotate(-2deg);
-            transition: all 0.6s ease;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
         }
 
-        .service-item.visible {
-            opacity: 1;
-            transform: translateY(0) rotate(0deg);
-        }
-
-        .service-item:hover {
-            transform: translateY(-5px) rotate(1deg);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
-        }
+        .service-item:nth-child(1) {animation-delay:0.2s;}
+        .service-item:nth-child(2) {animation-delay:0.4s;}
+        .service-item:nth-child(3) {animation-delay:0.6s;}
+        .service-item:nth-child(4) {animation-delay:0.8s;}
+        .service-item:nth-child(5) {animation-delay:1s;}
 
         .service-icon {
             font-size: 1.8rem;
-            margin-bottom: 0.6rem;
-            transition: transform 0.3s ease;
+            margin-bottom: 0.4rem;
         }
 
-        .service-icon:hover {
-            transform: scale(1.2) rotate(10deg);
-        }
+        .orange { color: #ee7a2c; }
+        .purple { color: #705ea0; }
+        .blue-mobile { color: #03a9f4; }
+        .green { color: #4caf50; }
+        .cyan { color: #00bcd4; }
 
         .service-title {
             font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.6rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
             color: #FFFFFF;
-            transition: color 0.3s ease;
-        }
-
-        .service-title:hover {
-            color: #2296f3;
         }
 
         .service-list {
-            font-size: 1rem;
+            font-size: 0.95rem;
             list-style-type: disc;
-            padding-left: 1.5rem;
+            padding-left: 1.2rem;
             color: #E5E5E5;
         }
 
-        /* Contact */
         .contact {
             max-width: 700px;
-            margin: 3rem auto;
+            margin: 2rem auto 3rem;
             background: #142d5e;
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+            box-shadow: 0 2px 6px rgb(0 0 0 / 0.3);
         }
 
-        .contact.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .contact form input,
-        .contact form textarea,
-        .contact form button {
+        .contact form input, .contact form textarea, .contact form button {
             width: 100%;
             font-size: 1rem;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
-        .contact input,
-        .contact textarea {
-            padding: 0.8rem;
+        .contact input, .contact textarea {
+            padding: 0.7rem;
             border-radius: 4px;
             border: 1px solid #ccc;
             background: #f5f5f5;
@@ -222,21 +198,18 @@
         }
 
         .contact button {
-            padding: 0.8rem;
+            padding: 0.7rem;
             border: none;
             border-radius: 4px;
             background: #2296f3;
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
         .contact button:hover {
             background: #1a7ac1;
-            transform: scale(1.05);
         }
 
-        /* Footer */
         footer {
             background-color: #0e2e4f;
             color: white;
@@ -244,8 +217,8 @@
             flex-wrap: wrap;
             justify-content: space-around;
             font-size: 0.95rem;
-            padding: 2.5rem 1rem;
-            gap: 1.5rem;
+            padding: 2rem 1rem;
+            gap: 1rem;
         }
 
         footer div {
@@ -261,42 +234,25 @@
             height: 18px;
         }
 
-        footer a:hover {
-            transform: scale(1.1);
-            transition: transform 0.3s ease;
-        }
-
         /* WhatsApp flottant */
         .whatsapp-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #25d366;
+            background-color: #25d366;
             color: white;
-            padding: 12px 18px;
+            padding: 0.7rem 1rem;
             border-radius: 50px;
             font-weight: bold;
             font-size: 1rem;
             text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            animation: bounce 2s infinite;
         }
 
         @media (max-width:700px) {
-            .grid-services {
-                grid-template-columns: 1fr;
-            }
-
-            footer {
-                flex-direction: column;
-                align-items: center;
-            }
+            .grid-services {grid-template-columns: 1fr;}
+            footer {flex-direction: column; align-items: center;}
         }
     </style>
 </head>
@@ -306,19 +262,14 @@
         <h1>Le Digital Simplifié :<br>Création, Dépannage & Web</h1>
         <p>Votre partenaire numérique pour tous vos projets</p>
         <div class="divider">
-            <div class="icon-bar">
-                <span>⚙️</span>
-                <span>📄</span>
-                <span>&lt;/&gt;</span>
-            </div>
+            <div class="icon-bar"><span>⚙️</span><span>📄</span><span>&lt;/&gt;</span></div>
         </div>
     </header>
 
-    <section class="solutions-box" aria-label="Solutions numériques">
+    <section class="solutions-box">
         <div class="solutions-header">VOS SOLUTIONS NUMÉRIQUES TOUT-EN-UN</div>
         <div class="grid-services">
-            <div class="service-item">
-                <div class="service-icon orange">🖌️</div>
+            <div class="service-item"><div class="service-icon orange">🖌️</div>
                 <h3 class="service-title">Création Digitale & Design</h3>
                 <ul class="service-list">
                     <li>Conception de CV professionnels & Lettres motivation</li>
@@ -326,15 +277,11 @@
                     <li>Visuels graphiques pour réseaux sociaux</li>
                 </ul>
             </div>
-            <div class="service-item">
-                <div class="service-icon purple">🎓</div>
+            <div class="service-item"><div class="service-icon purple">🎓</div>
                 <h3 class="service-title">Formation & Coaching</h3>
-                <ul class="service-list">
-                    <li>Cours pratiques adaptés à tous niveaux</li>
-                </ul>
+                <ul class="service-list"><li>Cours pratiques adaptés à tous niveaux</li></ul>
             </div>
-            <div class="service-item">
-                <div class="service-icon blue-mobile">📱</div>
+            <div class="service-item"><div class="service-icon blue-mobile">📱</div>
                 <h3 class="service-title">Assistance Mobile (iOS & Android)</h3>
                 <ul class="service-list">
                     <li>Configuration complète iPhone & Android</li>
@@ -342,8 +289,7 @@
                     <li>Optimisation du système et transfert données</li>
                 </ul>
             </div>
-            <div class="service-item">
-                <div class="service-icon green">💻</div>
+            <div class="service-item"><div class="service-icon green">💻</div>
                 <h3 class="service-title">Informatique & Maintenance</h3>
                 <ul class="service-list">
                     <li>Dépannage et maintenance PC (lenteurs, virus)</li>
@@ -351,8 +297,7 @@
                     <li>Installation et optimisation de jeux vidéo</li>
                 </ul>
             </div>
-            <div class="service-item">
-                <div class="service-icon cyan">&lt;/&gt;</div>
+            <div class="service-item"><div class="service-icon cyan">&lt;/&gt;</div>
                 <h3 class="service-title">Web & Développement</h3>
                 <ul class="service-list">
                     <li>Création de sites web vitrines</li>
@@ -370,50 +315,35 @@
             <textarea name="message" placeholder="Votre message" required></textarea>
             <button type="submit">Envoyer</button>
         </form>
-        <p style="text-align:center; color:#E5E5E5; margin-top:0.5rem;">Vos messages arrivent directement dans notre
-            boîte mail.</p>
+        <p style="text-align:center; color:#E5E5E5; margin-top:0.5rem;">
+            Vos messages arrivent directement dans notre boîte mail.
+        </p>
     </section>
 
     <footer>
         <div>
-            <svg viewBox="0 0 24 24">
-                <path d="M20 8.9 12 3 4 8.9v7c0 4 4 5 8 5s8-1 8-5v-7zM12 5.5 18.91 10H5.09L12 5.5z" />
-            </svg>
-            <span>Facebook : <a href="https://www.facebook.com/share/1Cc8dsCAfW/?mibextid=wwXIfr" target="_blank">Ma
-                    page</a></span>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6.62 10.79a15.464 15.464 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.48 2.53.75 3.88.75a1 1 0 011 1v3.25a1 1 0 01-1 1C10.29 21.54 2.46 13.71 2.46 3.5a1 1 0 011-1H6.7a1 1 0 011 1c0 1.35.26 2.67.75 3.88a1 1 0 01-.21 1.11l-2.62 2.3z"/></svg>
+            <span>Contact : <a href="tel:+224623422538">623 42 24 38</a></span>
         </div>
         <div>
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M12 2l-5.2 9h10.4L12 2zm0 10.75l-6 3.25v1.5l6-3.25 6 3.25v-1.5l-6-3.25zm6.5-2.75a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-            </svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 8.9 12 3 4 8.9v7c0 4 4 5 8 5s8-1 8-5v-7zM12 5.5 18.91 10H5.09L12 5.5z"/></svg>
+            <span>Email : <a href="mailto:wodya2000@gmail.com">wodya2000@gmail.com</a></span>
+        </div>
+        <div>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2l-5.2 9h10.4L12 2zm0 10.75l-6 3.25v1.5l6-3.25 6 3.25v-1.5l-6-3.25zm6.5-2.75a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
             <span>Zone : Hafia Mosquee & Sanoyah / À distance</span>
         </div>
         <div>
-            <svg viewBox="0 0 24 24">
-                <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm.25 15.5h-3.5v-2.5L11 10h-2.5v-3h3v2.5L10.25 13h2.5v3z" />
-            </svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm.25 15.5h-3.5v-2.5L11 10h-2.5v-3h3v2.5L10.25 13h2.5v3z"/></svg>
             <span>Tarif : Sur devis adapté</span>
+        </div>
+        <div>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M22.23 5.31a1 1 0 00-1.42 0L12 13.98 3.19 5.31a1 1 0 10-1.42 1.42l9.3 9.3a1 1 0 001.42 0l9.3-9.3a1 1 0 000-1.42z"/></svg>
+            <span>Facebook : <a href="https://www.facebook.com/share/1Cc8dsCAfW/?mibextid=wwXIfr" target="_blank">Ma page</a></span>
         </div>
     </footer>
 
-    <!-- Bouton WhatsApp flottant -->
-    <a href="https://wa.me/224623422538?text=Bonjour,%20je%20vous%20contacte%20depuis%20votre%20site" target="_blank"
-        class="whatsapp-btn">WhatsApp</a>
+    <a class="whatsapp-btn" href="https://wa.me/224623422538" target="_blank">WhatsApp</a>
 
-    <script>
-        // Animation scroll
-        const elements = document.querySelectorAll('.solutions-box, .service-item, .contact, header h1, header p');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
-        elements.forEach(el => observer.observe(el));
-    </script>
 </body>
-
-
 </html>
